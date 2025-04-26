@@ -24,6 +24,22 @@
     border-bottom: 1px solid #555;
 }
 
+@media (max-width: 600px) {
+    .task-form {
+        flex-direction: column;
+    }
+    #task-input,
+    #add-btn {
+        width: 100%;
+    }
+    #filter-buttons {
+        flex-wrap: wrap;
+    }
+    .filter {
+        flex-grow: 1;
+    }
+}
+
 @media (prefers-color-scheme: dark) {
     :root {
         --bg-color: #333;
