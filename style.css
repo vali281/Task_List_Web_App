@@ -1,0 +1,403 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap');
+
+/*Make Root variables*/
+:root.dark-mode main {
+    background: #444;
+    --hover-bg-color: #555;
+}
+
+:root.dark-mode {
+    --bg-color: #333;
+    --text-color: #f4f4f4;
+    --hover-bg-color: #555;
+    --primary-color: #2ecc71;
+    --accent-color: #e74c3c;
+}
+
+:root.dark-mode li {
+    border-bottom: 1px solid #555;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-color: #333;
+        --text-color: #f4f4f4;
+    }
+}
+
+:root {
+    --primary-color: #4CAF50;
+    --bg-color: #f4f4f4;
+    --text-color: #333;
+    --accent-color: #e74c3c;
+    --padding: 0.75rem;
+    --margin: 0.5rem;
+    --font-large: 1.5rem;
+    --font-medium: 1rem;
+    --font-small: 0.756rem;
+}
+
+/* Error state for empty input */
+#task-input.error {
+    border-color: red;
+    box-shadow: 0 0 4px rgba(231, 76, 60, 0.5);
+}
+
+/*For body*/
+body {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/*For main*/
+main {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    background: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.task-form {
+    display: flex;
+    gap: var(--margin);
+    margin-bottom: var(--margin);
+}
+
+/*For h1*/
+h1 {
+    font-size: var(--font-large);
+    text-align: center;
+    margin-bottom: var(--margin);
+}
+
+/*For h3*/
+h3 {
+    font-size: var(--font-medium);
+    margin: var(--margin) 0;
+}
+
+/*For Input*/
+#task-input {
+    flex-grow: 1;
+    padding: var(--padding);
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: var(--font-medium);
+}
+
+#task-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 4px rgba(76, 175, 80, 0.3);
+}
+
+#add-btn {
+    padding: var(--padding);
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: var(--font-medium);
+}
+
+/*Add Button*/
+#add-btn:hover {
+    opacity: 0.9;
+    transform: scale(1.05);
+    transition: all 0.2s ease;
+}
+
+/*For Task List*/
+#task-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/*For List items*/
+li {
+    display: flex;
+    align-items: center;
+    gap: var(--margin);
+    padding: var(--padding);
+    border-bottom: 1px solid #ddd;
+}
+
+/*Task Text*/
+.task-text {
+    flex-grow: 1;
+    font-size: var(--font-medium);
+    color: var(--text-color);
+}
+
+.completed .task-text {
+    text-decoration: line-through;
+    opacity: 0.7;
+}
+
+/*Delete Button*/
+.delete-btn {
+    background: none;
+    border: none;
+    color: var(--accent-color);
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+
+.delete-btn:hover {
+    color: #c0392b;
+    transform: scale(1.1);
+}
+
+li:hover {
+    background: #eee;
+    transition: background 0.2s ease;
+}
+
+#filter-buttons {
+    display: flex;
+    gap: var(--margin);
+    margin: var(--margin) 0;
+}
+
+.filter {
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--text-color);
+    background: none;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: var(--font-small);
+}
+
+.filter.active {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+.filter:hover {
+    background: #eee;
+    transition: background 0.2s ease;
+}
+
+/*Clear all*/
+#clear-all {
+    padding: var(--padding);
+    background: var(--accent-color);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: var(--font-medium);
+    display: block;
+    margin: var(--margin) 0;
+}
+
+#clear-all:hover {
+    opacity: 0.7;
+    transform: scale(1.05);
+    transition: all 0.2s ease;
+}
+
+#theme-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: var(--padding);
+    background: #666;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: var(--font-medium);
+    transition: all 0.3s ease;
+}
+
+#theme-toggle:hover {
+    opacity: 0.9;
+    transform: scale(1.05) rotate(10deg);
+}
+
+#theme-toggle::before {
+    content: '';
+    transition: all 0.3s ease;
+}
+
+.dark-mode #theme-toggle {
+    background: #2ecc71;
+}
+
+@media (max-width: 600px) {
+    .task-form {
+        flex-direction: column;
+    }
+
+    #task-input,
+    #add-btn {
+        width: 100%;
+    }
+
+    #filter-buttons {
+        flex-wrap: wrap;
+    }
+
+    .filter {
+        flex-grow: 1;
+    }
+}
+
+button {
+    min-height: 44px;
+    min-width: 44px;
+}
+
+:root.dark-mode {
+    --bg-color: #333;
+    --text-color: #f4f4f4;
+    --primary-color: #2ecc71;
+    --accent-color: #e74c3c;
+}
+
+input[type="checkbox"] {
+    width: 1.2rem;
+    height: 1.2rem;
+    cursor: pointer;
+    margin-right: var(--margin);
+}
+
+#add-btn:focus,
+.filter:focus,
+#clear-all:focus,
+#theme-toggle:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+#add-btn,
+#clear-all,
+#theme-toggle {
+    padding: var(--padding);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: var(--font-medium);
+    transition: all 0.2s ease;
+}
+
+/* Error state for empty input */
+#task-input.error {
+    border-color: red;
+    box-shadow: 0 0 4px rgba(231, 76, 60, 0.5);
+}
+
+/* Smooth theme transition */
+body {
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+main {
+    transition: background-color 0.3s ease;
+}
+
+/* Disabled clear all button */
+#clear-all:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Screen reader only */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+}
+
+/* Disabled clear all button */
+#clear-all:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.filter-message {
+    color: var(--primary-color);
+    margin: var(--margin) 0;
+    font-size: var(--font-small);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+li {
+    animation: fadeIn 0.3s ease;
+}
+
+.theme-message {
+    color: var(--primary-color);
+    margin: var(--margin) 0;
+    font-size: var(--font-small);
+}
+
+.filter-message, .theme-message {
+    color: var(--primary-color);
+    margin: var(--margin) 0;
+    font-size: var(--font-small);
+}
+
+.theme-toggle {
+    position: relative;
+    padding: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+}
+
+.theme-icon {
+    width: 24px;
+    height: 24px;
+    transition: transform 0.3s ease;
+    stroke: var(--text-color);
+}
+
+.theme-icon.moon {
+    display: none;
+}
+
+.dark-mode .theme-icon.sun {
+    display: none;
+}
+
+.dark-mode .theme-icon.moon {
+    display: block;
+}
+
+/* Update hover background */
+:root.dark-mode li:hover {
+    background: var(--hover-bg-color);
+}
